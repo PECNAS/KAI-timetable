@@ -11,6 +11,7 @@ from main import dp, bot
 from config import MSGS, BUTTONS, ADMINS
 from keyboards import *
 from states import *
+from timetable_parser import *
 
 main_router = Router()
 dp.include_router(main_router)
