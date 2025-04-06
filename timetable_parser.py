@@ -22,7 +22,7 @@ import openpyxl
 # 	}
 # }
 
-def get_timetable_from_xlsx():
+def get_students_timetable():
 	timetable = {}
 	wb = openpyxl.load_workbook("rasp.xlsx")
 	sheet = wb.active
@@ -42,6 +42,8 @@ def get_timetable_from_xlsx():
 		house = row[7].value
 		teacher = row[9].value
 
+		if not group.startswith("41"): continue
+		
 		data = {
 				"time": time.strftime("%H:%M"),
 				"subject": subject,
@@ -70,4 +72,4 @@ def get_timetable_from_xlsx():
 	return timetable
 
 if __name__ == "__main__":
-	print(get_timetable_from_xlsx())
+	print(get_students_timetable())

@@ -12,5 +12,40 @@ def getStartMarkup():
 
 	return markup
 
+def getGroupsMarkup(groups):
+	builder = InlineKeyboardBuilder()
+
+	for group in groups:
+		builder.button(
+			text=group,
+			callback_data=f"group_{group}")
+
+	builder.adjust(2)
+	return builder.as_markup()
+
+def getDaysMarkup():
+	builder = InlineKeyboardBuilder()
+
+	for day in BUTTONS["days"]:
+		builder.button(
+			text=day,
+			callback_data=f"day_{day}")
+
+	builder.adjust(2)
+	return builder.as_markup()
+
+def getWeeksMarkup():
+	builder = InlineKeyboardBuilder()
+
+	for data, text in BUTTONS["weeks"].items():
+		builder.button(
+			text=text,
+			callback_data=data)
+
+	builder.adjust(2)
+	return builder.as_markup()
+
 if __name__ == "__main__":
-	getCategoriesMarkup()
+	from imports import *
+	timetable = get_students_timetable()
+	print(getGroupsMarkup(list(timetable.keys())))
