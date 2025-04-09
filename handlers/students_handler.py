@@ -40,6 +40,9 @@ async def WeekState_handler(call, state):
 	data = (await state.get_data())
 
 	week = call.data
+	if week == "even": text_week = "Чётная"
+	else: text_week = "Нечётная"
+
 	print(week)
 	group = data.get("group")
 	day = data.get("day")
@@ -52,6 +55,7 @@ async def WeekState_handler(call, state):
 	await call.message.answer(
 		MSGS["student_timetable"].format(
 			day,
-			week,
+			text_week,
 			group,
-			text))
+			text), reply_markup=getStartMarkup())
+	await state.clear()

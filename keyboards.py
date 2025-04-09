@@ -45,7 +45,23 @@ def getWeeksMarkup():
 	builder.adjust(2)
 	return builder.as_markup()
 
+def getTeachersMarkup(teachers):
+	builder = InlineKeyboardBuilder()
+
+	for teacher in teachers:
+		if len(teacher.split()) == 2:
+			text = teacher
+		else:
+			text = f"{teacher.split(" ")[0]} {teacher.split(" ")[1][0]}. {teacher.split(" ")[2][0]}."
+
+		builder.button(
+			text=text,
+			callback_data=teacher)
+
+	builder.adjust(3)
+	return builder.as_markup()
+
 if __name__ == "__main__":
 	from imports import *
-	timetable = get_students_timetable()
-	print(getGroupsMarkup(list(timetable.keys())))
+	timetable = get_teachers_timetable()
+	print(getTeachersMarkup(list(timetable.keys())))
