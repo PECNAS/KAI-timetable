@@ -9,3 +9,6 @@ class StudentsGroup(StatesGroup):
 	GroupState = State()
 	DayState = State()
 	WeekState = State()
+
+class TeacherInfoGroup(StatesGroup):
+	TeacherNameState = State()

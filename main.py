@@ -37,6 +37,7 @@ if __name__ == "__main__":
 	from handlers.commands_handler import *
 	from handlers.students_handler import *
 	from handlers.teachers_handler import *
+	from handlers.teacher_info_handler import *
 
 	logging.basicConfig(
 		level=logging.INFO,

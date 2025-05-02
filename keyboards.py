@@ -1,5 +1,5 @@
 from aiogram.utils.keyboard import InlineKeyboardBuilder, ReplyKeyboardBuilder
-from config import BUTTONS
+from config import BUTTONS, TEACHERS
 
 def getStartMarkup():
 	builder = ReplyKeyboardBuilder()
@@ -61,7 +61,17 @@ def getTeachersMarkup(teachers):
 	builder.adjust(3)
 	return builder.as_markup()
 
+def getTeacherInfoMarkup():
+	builder = InlineKeyboardBuilder()
+
+	for i in range(len(TEACHERS)):
+		builder.button(
+			text=TEACHERS[i]["name"],
+			callback_data=f"teacher_info__{i}")
+
+	builder.adjust(3)
+	return builder.as_markup()
+
 if __name__ == "__main__":
 	from imports import *
-	timetable = get_teachers_timetable()
-	print(getTeachersMarkup(list(timetable.keys())))
+	getTeacherInfoMarkup()
